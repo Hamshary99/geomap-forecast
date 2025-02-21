@@ -6,12 +6,21 @@ const geocode = require('./data_handling/geocode');
 const country = process.argv[2];
 
 geocode(country, (error, data) => {
-    console.log("ERROR : ", error);
-    console.log("DATA : ", data);
+    if(error !== undefined) {
+    console.log("ERROR: ", error);
+    } else {
+    //console.log("DATA : ", data);
+    console.log("Country: ", country);
+    console.log("Longtitude: ", data.longtitude);
+    console.log("Latitude: ", data.latitude);
+    }
 
     forecast(data.latitude, data.longtitude, (error, data) => {
-        console.log("ERROR : ", error);
-        console.log("DATA : ", data);
+        if(error !== undefined) {
+        console.log("ERROR: ", error);
+        } else {
+        console.log("DATA: ", data);
+        }
     });
 });
 
